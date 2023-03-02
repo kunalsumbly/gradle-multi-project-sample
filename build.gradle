@@ -73,12 +73,12 @@ subprojects {
                 net.researchgate.release.GitAdapter
         ]
 
-        git {
-            requireBranch = 'master'
-            pushToRemote = 'origin'
-            pushToBranchPrefix = ''
-            commitVersionFileOnly = false
-        }
+//        git {
+//            requireBranch = 'master'
+//            pushToRemote = 'origin'
+//            pushToBranchPrefix = ''
+//            commitVersionFileOnly = false
+//        }
 
     }
     compileJava.dependsOn tasks.googleJavaFormat
