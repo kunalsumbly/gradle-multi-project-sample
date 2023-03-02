@@ -1,7 +1,9 @@
+
 plugins {
     id 'java'
     id 'application'
 }
+apply plugin: 'net.researchgate.release'
 
 mainClassName = 'app.Main'
 
@@ -18,7 +20,14 @@ task customFatJar(type: Jar) {
     with jar
 }
 
+
+//task release(type: org.gradle.api.tasks.Exec) {
+//    commandLine 'git', 'tag', '-a', project.version, '-m', "Release version ${project.version}"
+//    commandLine 'git', 'push', 'origin', 'HEAD', '--tags'
+//}
+
 release {
+    tagTemplate =  '$name-$version'
     git {
         requireBranch = 'master'
         pushToRemote = 'origin'
