@@ -4,7 +4,7 @@ plugins {
     id 'java'
     id 'application'
 }
-apply plugin: 'net.researchgate.release'
+
 
 mainClassName = 'app.Main'
 
@@ -21,7 +21,7 @@ task customFatJar(type: Jar) {
     with jar
 }
 
-
+apply plugin: 'net.researchgate.release'
 release {
     tagTemplate =  '$name-$version'
     versionPropertyFile = 'gradle.properties'
