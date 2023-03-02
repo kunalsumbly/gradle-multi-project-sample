@@ -1,6 +1,16 @@
 plugins {
     id 'java-library'
 }
-
+apply plugin: 'net.researchgate.release'
 dependencies {
+}
+
+release {
+    tagTemplate =  '$name-$version'
+    git {
+        requireBranch = 'master'
+        pushToRemote = 'origin'
+        pushToBranchPrefix = ''
+        commitVersionFileOnly = false
+    }
 }

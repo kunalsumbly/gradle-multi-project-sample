@@ -26,12 +26,4 @@ task customFatJar(type: Jar) {
 //    commandLine 'git', 'push', 'origin', 'HEAD', '--tags'
 //}
 
-release {
-    tagTemplate =  '$name-$version'
-    git {
-        requireBranch = 'master'
-        pushToRemote = 'origin'
-        pushToBranchPrefix = ''
-        commitVersionFileOnly = false
-    }
-}
+

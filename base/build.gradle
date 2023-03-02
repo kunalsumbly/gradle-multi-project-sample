@@ -1,9 +1,19 @@
 plugins {
     id 'java'
 }
-
+apply plugin: 'net.researchgate.release'
 dependencies {
     compile project(':common')
 
     implementation 'org.apache.commons:commons-math3:3.6.1'
+}
+
+release {
+    tagTemplate =  '$name-$version'
+    git {
+        requireBranch = 'master'
+        pushToRemote = 'origin'
+        pushToBranchPrefix = ''
+        commitVersionFileOnly = false
+    }
 }
