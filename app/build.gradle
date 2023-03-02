@@ -9,7 +9,7 @@ plugins {
 mainClassName = 'app.Main'
 
 dependencies {
-    compile project(':base')
+    compile implementation('base:base:99.0.2')
 }
 
 task customFatJar(type: Jar) {
