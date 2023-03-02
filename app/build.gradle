@@ -19,7 +19,6 @@ task customFatJar(type: Jar) {
 }
 
 release {
-    tagTemplate =  'from the child'
     git {
         requireBranch = 'master'
         pushToRemote = 'origin'
