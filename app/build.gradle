@@ -1,3 +1,4 @@
+import java.util.regex.Matcher
 
 plugins {
     id 'java'
@@ -21,9 +22,35 @@ task customFatJar(type: Jar) {
 }
 
 
-//task release(type: org.gradle.api.tasks.Exec) {
-//    commandLine 'git', 'tag', '-a', project.version, '-m', "Release version ${project.version}"
-//    commandLine 'git', 'push', 'origin', 'HEAD', '--tags'
-//}
+release {
+    failOnCommitNeeded = false
+    failOnPublishNeeded = false
+    failOnSnapshotDependencies = false
+    failOnUnversionedFiles = false
+    failOnUpdateNeeded = false
+    revertOnFail = true
+    preCommitText = ''
+    preTagCommitMessage = '[Gradle Release Plugin] - pre tag commit: '
+    tagCommitMessage = '[Gradle Release Plugin] - creating tag: '
+    newVersionCommitMessage = '[Gradle Release Plugin] - new version commit: '
+    tagTemplate = '${version}'
+    versionPropertyFile = 'gradle.properties'
+    versionProperties = []
+    buildTasks = ['clean']
+    versionPatterns = [
+            /(\d+)([^\d]*$)/: { Matcher m, Project p -> m.replaceAll("${(m[0][1] as int) + 1}${m[0][2]}") }
+    ]
+    scmAdapters = [
+            net.researchgate.release.GitAdapter
+    ]
+
+    git {
+        requireBranch = 'master'
+        pushToRemote = 'origin'
+        pushToBranchPrefix = ''
+        commitVersionFileOnly = false
+    }
+
+}
 
 
